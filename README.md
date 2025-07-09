@@ -26,7 +26,7 @@ Automatizar um processo repetitivo de extração manual de dados, garantindo:
 
 ## 🚀 Como Funciona
 
-1. Jenkins executa diariamente o script Python (`NPS_ANUAL.py`)
+1. Jenkins executa diariamente o script Python (`NPS_Diaria.py`)
 2. O Selenium acessa a plataforma IndeCX e realiza login automatizado
 3. O sistema aplica filtros para selecionar o painel NPS anual
 4. Os dados de NPS por filial são extraídos e estruturados em um DataFrame

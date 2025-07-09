@@ -66,7 +66,7 @@ time.sleep(8)
 linhas = texto_extraido.split('\n')  # Dividir o texto em linhas
 
 # Lista de índices das linhas que queremos pegar
-indices = [1, 7, 12, 17, 22, 27, 32, 37, 42, 47, 53, 59, 65, 71, 77]
+indices = [1, 7, 13, 19, 26, 32, 38, 44, 50, 56, 63, 70, 77, 84, 91]
 
 # Lista de empresas conforme fornecido
 empresas = [
