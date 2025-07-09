@@ -11,11 +11,10 @@ from datetime import date
 from sqlalchemy import create_engine
 import urllib
 
-## Maneira de fazer o WebDriver Funcionar para nosso ambiente local ##
 print("Inicializando o navegador...")
 options = Options()
-options.binary_location = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-caminho_driver = r"C:\Users\adm.luiz.vinicius\Downloads\chromedriver.exe"
+options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+caminho_driver = r"C:\Users\joao.mendes\Documents\chromedriver-win64\chromedriver.exe"
 
 print("Inicializando o navegador manualmente...")
 navegador = webdriver.Chrome(
@@ -23,7 +22,7 @@ navegador = webdriver.Chrome(
     options=options
 )
 
-## Definir a URL e as credenciais (Migrar para uma forma mais segura da utilização desses dados)##
+# Definir a URL e as credenciais
 url = 'https://www.app-indecx.com/'
 login = "ericka.nascimento@parvi.com.br"
 senha = "Ericka@123"
@@ -45,26 +44,26 @@ botaologin.click()
 print("Aplicando filtros...")
 filtro = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#app > section > section > aside > div > ul > li:nth-child(2) > span > span")))
 filtro.click()
-time.sleep(12)
+time.sleep(6)
 
 print("Selecionando NPS...")
 cliqueNPS = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#pdf-dashboard > div > div.session__side-bar > ul > li:nth-child(4) > span > span")))
 cliqueNPS.click()
-time.sleep(12)
+time.sleep(6)
 
 print("Fechando filtro...")
 Cliqueparafecharfiltro = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#pdf-dashboard > div > div.session__side-bar > button")))
 Cliqueparafecharfiltro.click()
-time.sleep(12)
+time.sleep(6)
 
 
-
+# Extrair o texto do elemento
 neutro_boavista = WebDriverWait(navegador, 15).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#panel-main")))
 texto_extraido = neutro_boavista.text
-time.sleep(8)
+time.sleep(2)
 
 # Processar o texto extraído
-linhas = texto_extraido.split('\n')  
+linhas = texto_extraido.split('\n')  # Dividir o texto em linhas
 
 # Lista de índices das linhas que queremos pegar
 indices = [1, 6, 11, 16, 22, 27, 32, 37, 42, 47, 53, 59, 65, 71, 77]
@@ -75,13 +74,14 @@ empresas = [
     "SÃO GONÇALO", "TANGUA", "LUZIANA", "PALMARES", "PETROPOLIS", "URUÇUI", "NACIONAL"
 ]
 
+# Criar listas para armazenar as notas
 notas = []
 
 # Iterar sobre os índices desejados e capturar as notas
 for i in range(len(indices)):
     index = indices[i]
-    if index + 4 < len(linhas): 
-        nota = linhas[index + 4].strip()  
+    if index + 4 < len(linhas):  # Garantir que a linha de nota exista
+        nota = linhas[index + 4].strip()  # Nota na 5ª linha
 
         # Verificar se a nota é "Não há dados neste relatório" e substituir por 0
         if "Não há dados neste relatório" in nota:
@@ -90,13 +90,14 @@ for i in range(len(indices)):
         notas.append(nota)
 
 # Criar um DataFrame com as notas e as empresas
-data_atualizacao = date.today().strftime('%Y-%m-%d')  
+data_atualizacao = date.today().strftime('%Y-%m-%d')  # Data atual
 df = pd.DataFrame({
-    'Empresa': empresas[:len(notas)],  
+    'Empresa': empresas[:len(notas)],  # Ajustar o tamanho da lista de empresas para coincidir com as notas
     'Nota Filial NPS StarClass': notas,
     'data_atualizacao': data_atualizacao
 })
 
+# Exibir o DataFrame
 print(df)
 
 print("Conectando ao banco de dados...")
