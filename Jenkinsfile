@@ -23,29 +23,16 @@ pipeline {
     }
 
     post {
-        success {
+        always {
             script {
-                def log = readFile('script_log.txt')
-                emailext(
-                    subject: "SUCESSO: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                    body: """
-                        <p>O job <b>${env.JOB_NAME}</b> finalizou com <b>sucesso</b>.</p>
-                        <p><a href='${env.BUILD_URL}'>Ver detalhes no Jenkins</a></p>
-                        <pre>${log}</pre>
-                    """,
-                    mimeType: 'text/html',
-                    to: 'bielgagg94@gmail.com'
-                )
-            }
-        }
+                // Verifica se o arquivo existe antes de ler
+                def log = fileExists('script_log.txt') ? readFile('script_log.txt') : 'Arquivo script_log.txt não encontrado.'
 
-        failure {
-            script {
-                def log = readFile('script_log.txt')
+                // Envia o e-mail com o log e status da build
                 emailext(
-                    subject: "FALHA: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    subject: "RESULTADO: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                     body: """
-                        <p>O job <b>${env.JOB_NAME}</b> falhou.</p>
+                        <p>Job <b>${env.JOB_NAME}</b> executado com status: <b>${currentBuild.currentResult}</b>.</p>
                         <p><a href='${env.BUILD_URL}'>Ver detalhes no Jenkins</a></p>
                         <pre>${log}</pre>
                     """,
