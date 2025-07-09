@@ -1,0 +1,6 @@
+git remote add origin https://github.com/JoaoParvi/RPA_NPS.git
+git branch -M NPS_StarClass
+
+
+
+ git push -u origin main
