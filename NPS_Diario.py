@@ -11,11 +11,10 @@ from datetime import date
 from sqlalchemy import create_engine
 import urllib
 
-## Maneira de fazer o WebDriver Funcionar para nosso ambiente local ##
 print("Inicializando o navegador...")
 options = Options()
-options.binary_location = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-caminho_driver = r"C:\Users\adm.luiz.vinicius\Downloads\chromedriver.exe"
+options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+caminho_driver = r"C:\Users\joao.mendes\Documents\chromedriver-win64\chromedriver.exe"
 
 print("Inicializando o navegador manualmente...")
 navegador = webdriver.Chrome(
