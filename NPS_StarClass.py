@@ -40,6 +40,7 @@ campo_senha.send_keys(senha)
 
 botaologin = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".btn-block > span:nth-child(1)")))
 botaologin.click()
+time.sleep(10)
 
 print("Aplicando filtros...")
 filtro = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#app > section > section > aside > div > ul > li:nth-child(2) > span > span")))
