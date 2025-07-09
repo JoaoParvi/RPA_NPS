@@ -16,7 +16,7 @@ pipeline {
 
         stage('Executar script Python') {
             steps {
-                bat '"C:\\Users\\adm.luiz.vinicius\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" NPS_ANUAL.py'
+                bat '"C:\\Users\\adm.luiz.vinicius\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" NPS_StarClass.py'
             }
         }
     }
