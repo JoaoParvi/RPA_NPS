@@ -16,27 +16,43 @@ pipeline {
 
         stage('Executar script Python') {
             steps {
-                bat '"C:\\Users\\adm.luiz.vinicius\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" NPS_Diario.py'
-            }
-        }
+                bat '"C:\\Users\\adm.luiz.vinicius\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" NPS_Diario.py > script_log.txt 2>&1'
+    }
+}
+
     }
 
     post {
-        success {
+    success {
+        script {
+            def log = readFile('script_log.txt')
             emailext(
                 subject: "SUCESSO: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """<p>O job ${env.JOB_NAME} finalizou com sucesso.</p>
-                         <p>Veja mais detalhes em: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
-                to: 'bielgagg94@gmail.com'
+                body: """
+                    <p>O job <b>${env.JOB_NAME}</b> finalizou com <b>sucesso</b>.</p>
+                    <p><a href='${env.BUILD_URL}'>Ver detalhes no Jenkins</a></p>
+                    <pre>${log}</pre>
+                """,
+                mimeType: 'text/html',
+                to: 'bielgagg94@gmail.com',
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
             )
         }
+    }
 
-        failure {
+    failure {
+        script {
+            def log = readFile('script_log.txt')
             emailext(
                 subject: "FALHA: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """<p>O job ${env.JOB_NAME} falhou.</p>
-                         <p>Veja mais detalhes em: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
-                to: 'bielgagg94@gmail.com'
+                body: """
+                    <p>O job <b>${env.JOB_NAME}</b> falhou.</p>
+                    <p><a href='${env.BUILD_URL}'>Ver detalhes no Jenkins</a></p>
+                    <pre>${log}</pre>
+                """,
+                mimeType: 'text/html',
+                to: 'bielgagg94@gmail.com',
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
             )
         }
     }
