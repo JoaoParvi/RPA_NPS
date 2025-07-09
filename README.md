@@ -75,3 +75,4 @@ As credenciais estão **temporariamente embutidas** no script para prototipagem.
 **Time de BI / RPA - Grupo Parvi**  
 📧 luiz.ssilva@parvi.com.br
 📧 joao.mendes@parvi.com.br 
+
