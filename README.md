@@ -26,7 +26,7 @@ Automatizar um processo repetitivo de extração manual de dados, garantindo:
 
 ## 🚀 Como Funciona
 
-1. Jenkins executa diariamente o script Python (`NPS_ANUAL.py`)
+1. Jenkins executa diariamente o script Python (`NPS_StarClass.py`)
 2. O Selenium acessa a plataforma IndeCX e realiza login automatizado
 3. O sistema aplica filtros para selecionar o painel NPS anual
 4. Os dados de NPS por filial são extraídos e estruturados em um DataFrame
@@ -49,13 +49,13 @@ Automatizar um processo repetitivo de extração manual de dados, garantindo:
 ## ▶️ Execução Manual (para testes)
 
 pip install -r requirements.txt
-python NPS_ANUAL.py
+python NPS_StarClass.py
 
 
 ## 📊 Integração com BI
 
 Após a inserção dos dados no banco SQL, os relatórios no Power BI se conectam diretamente à tabela:
-[NPS_Vendas_Anual_IndeCX]
+[NPS_Vendas_StarClass_IndeCX]
 Permitindo análises em tempo real sobre desempenho de filiais e evolução do NPS.
 
 ---
