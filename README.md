@@ -1,6 +1,6 @@
-# 🚗 RPA de Extração de NPS - IndeCX | Grupo Parvi
+# Automação de Extração de NPS | Grupo Parvi
 
-Este projeto tem como objetivo automatizar a extração diária de dados de NPS da plataforma [IndeCX](https://www.app-indecx.com/), processar e salvar os dados em uma instância de banco de dados SQL Server do Grupo Parvi, e utilizá-los posteriormente em relatórios analíticos (BI).
+Este projeto tem como objetivo automatizar a extração diária de dados de NPS da plataforma utilizada, processar e salvar os dados em uma instância de banco de dados SQL Server do Grupo Parvi, e utilizá-los posteriormente em relatórios analíticos (BI).
 
 ---
 
