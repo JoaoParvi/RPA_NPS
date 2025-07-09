@@ -44,23 +44,23 @@ botaologin.click()
 print("Aplicando filtros...")
 filtro = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#app > section > section > aside > div > ul > li:nth-child(2) > span > span")))
 filtro.click()
-time.sleep(6)
+time.sleep(12)
 
 print("Selecionando NPS...")
 cliqueNPS = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#pdf-dashboard > div > div.session__side-bar > ul > li:nth-child(4) > span > span")))
 cliqueNPS.click()
-time.sleep(6)
+time.sleep(12)
 
 print("Fechando filtro...")
 Cliqueparafecharfiltro = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#pdf-dashboard > div > div.session__side-bar > button")))
 Cliqueparafecharfiltro.click()
-time.sleep(6)
+time.sleep(12)
 
 
 # Extrair o texto do elemento
 neutro_boavista = WebDriverWait(navegador, 15).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#panel-main")))
 texto_extraido = neutro_boavista.text
-time.sleep(2)
+time.sleep(8)
 
 # Processar o texto extraído
 linhas = texto_extraido.split('\n')  # Dividir o texto em linhas
