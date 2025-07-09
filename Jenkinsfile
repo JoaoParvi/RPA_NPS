@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Clonar o repositório') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/GabsFerr22/RPA_Mardisa.git'
+                git branch: 'NPS_StarClass',
+                    url: 'https://github.com/JoaoParvi/RPA_NPS.git'
             }
         }
 
@@ -17,7 +17,7 @@ pipeline {
 
         stage('Executar script Python') {
             steps {
-                bat '"C:\\Users\\adm.luiz.vinicius\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" NPS_ANUAL.py'
+                bat '"C:\\Users\\adm.luiz.vinicius\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" NPS_StarClass.py'
             }
         }
     }
