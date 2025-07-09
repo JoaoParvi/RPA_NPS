@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Clonar o repositório') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/GabsFerr22/RPA_Mardisa.git'
+                git branch: 'NPS_Anual',
+                    url: 'https://github.com/JoaoParvi/RPA_NPS.git'
             }
         }
 
