@@ -21,4 +21,24 @@ pipeline {
             }
         }
     }
+
+    post {
+        success {
+            emailext(
+                subject: "SUCESSO: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """<p>O job ${env.JOB_NAME} finalizou com sucesso.</p>
+                         <p>Veja mais detalhes em: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
+                to: 'joao.mendes@parvi.com.br'
+            )
+        }
+
+        failure {
+            emailext(
+                subject: "FALHA: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """<p>O job ${env.JOB_NAME} falhou.</p>
+                         <p>Veja mais detalhes em: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></p>""",
+                to: 'joao.mendes@parvi.com.br'
+            )
+        }
+    }
 }
