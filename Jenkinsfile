@@ -37,7 +37,7 @@ pipeline {
                         <pre>${log}</pre>
                     """,
                     mimeType: 'text/html',
-                    to: 'bielgagg94@gmail.com',
+                    to: 'bielgagg94@gmail.com, luizvinicius0912@gmail.com',
                     attachmentsPattern: 'script_log.txt'
                 )
             }
