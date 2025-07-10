@@ -17,22 +17,45 @@ pipeline {
 
         stage('Executar script Python') {
             steps {
-                bat '"C:\\Users\\adm.luiz.vinicius\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" NPS_Diario.py'
-            }
-        }
+                bat '''
+            C:\\Users\\adm.luiz.vinicius\\AppData\\Local\\Programs\\Python\\Python312\\python.exe NPS_Diario.py > script_log.txt 2>&1
+            type script_log.txt
+        '''
+    }
+}
     }
 
     post {
-        always {
+        success {
             script {
+                def log = readFile('script_log.txt')
                 emailext(
-                    subject: "RESULTADO: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    subject: "SUCESSO: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                     body: """
-                        <p>Job <b>${env.JOB_NAME}</b> executado com status: <b>${currentBuild.currentResult}</b>.</p>
+                        <p>O job <b>${env.JOB_NAME}</b> finalizou com <b>sucesso</b>.</p>
                         <p><a href='${env.BUILD_URL}'>Ver detalhes no Jenkins</a></p>
+                        <pre>${log}</pre>
                     """,
                     mimeType: 'text/html',
-                    to: 'bielgagg94@gmail.com'
+                    to: 'bielgagg94@gmail.com, luizvinicius0912@gmail.com',
+                    attachmentsPattern: 'script_log.txt'
+                )
+            }
+        }
+
+        failure {
+            script {
+                def log = readFile('script_log.txt')
+                emailext(
+                    subject: "FALHA: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    body: """
+                        <p>O job <b>${env.JOB_NAME}</b> falhou.</p>
+                        <p><a href='${env.BUILD_URL}'>Ver detalhes no Jenkins</a></p>
+                        <pre>${log}</pre>
+                    """,
+                    mimeType: 'text/html',
+                    to: 'bielgagg94@gmail.com, luizvinicius0912@gmail.com',
+                    attachmentsPattern: 'script_log.txt'
                 )
             }
         }
