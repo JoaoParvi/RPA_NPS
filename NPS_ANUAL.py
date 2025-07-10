@@ -90,9 +90,9 @@ for i in range(len(indices)):
         notas.append(nota)
 
 # Criar um DataFrame com as notas e as empresas
-data_atualizacao = date.today().strftime('%Y-%m-%d')  # Data atual
+data_atualizacao = date.today().strftime('%Y-%m-%d')  
 df = pd.DataFrame({
-    'Empresa': empresas[:len(notas)],  # Ajustar o tamanho da lista de empresas para coincidir com as notas
+    'Empresa': empresas[:len(notas)],  
     'Nota Filial NPS Anual': notas,
     'data_atualizacao': data_atualizacao
 })
