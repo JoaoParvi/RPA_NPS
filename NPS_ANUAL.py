@@ -40,21 +40,22 @@ campo_senha.send_keys(senha)
 
 botaologin = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".btn-block > span:nth-child(1)")))
 botaologin.click()
+time.sleep(15)
 
 print("Aplicando filtros...")
 filtro = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#app > section > section > aside > div > ul > li:nth-child(2) > span > span")))
 filtro.click()
-time.sleep(12)
+time.sleep(20)
 
 print("Selecionando NPS...")
 cliqueNPS = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#pdf-dashboard > div > div.session__side-bar > ul > li:nth-child(2) > span > span")))
 cliqueNPS.click()
-time.sleep(12)
+time.sleep(20)
 
 print("Fechando filtro...")
 Cliqueparafecharfiltro = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#pdf-dashboard > div > div.session__side-bar > button")))
 Cliqueparafecharfiltro.click()
-time.sleep(12)
+time.sleep(20)
 
 # Extrair o texto do elemento
 neutro_boavista = WebDriverWait(navegador, 15).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#panel-main")))
